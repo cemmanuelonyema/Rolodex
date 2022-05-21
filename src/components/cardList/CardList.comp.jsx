@@ -30,13 +30,12 @@ import "./cardList.style.css";
 //     </div>
 //   );
 // };
-
-const CardList = (props) => {
-  console.log(props);
+//destructured monsters out of props being passed down
+const CardList = ({ monsters }) => {
   return (
     <div className="card-list">
       {" "}
-      {props.monsters.map((monster) => (
+      {monsters.map((monster) => (
         <Card key={monster.id} monster={monster} />
       ))}
     </div>

@@ -1,16 +1,14 @@
 import React, { Component } from "react";
 import "./App.css";
 import CardList from "./components/cardList/CardList.comp.jsx";
+import { SearchBox } from "./components/search/Search.comp";
 
 class App extends Component {
   state = {
-    monsters: [
-      //   { name: "rolodex-1", id: "1" },
-      //   { name: "rolodex-2", id: "2" },
-      //   { name: "rolodex-3", id: "3" },
-      //   { name: "rolodex-4", id: "4" },
-      //   { name: "rolodex-5", id: "5" },
-    ],
+    monsters: [],
+    searchfield: "",
+
+    // this.handleChange = this.handleChange.bind(this);
   };
 
   componentDidMount() {
@@ -18,7 +16,18 @@ class App extends Component {
       .then((response) => response.json())
       .then((users) => this.setState({ monsters: users }));
   }
+
+  // arrow func automatically binds the this keyword, while it would be explicitly binded in reg func
+  handleChange = (e) => {
+    this.setState({ searchfield: e.target.value });
+  };
+
   render() {
+    const { monsters, searchfield } = this.state;
+    const filteredMonsters = monsters.filter((monster) => {
+      monster.name.toLowerCase().includes(searchfield.toLowerCase());
+      console.log(filteredMonsters);
+    });
     return (
       <div className="App">
         {/* <CardList>
@@ -26,10 +35,31 @@ class App extends Component {
             return <h1 key={monster.id}>{monster.name}</h1>;
           })}
         </CardList>{" "} */}
-        <CardList monsters={this.state.monsters} />
-
         {/* <Card /> */}
         {/* <CardList monsters={this.state.monsters} /> */}
+        {/* <input
+          type="search"
+          placeholder="search monster"
+          onChange={(e) => {
+            e.preventDefault();
+            this.setState({ searchfield: e.target.value }, () => {
+              return this.state.searchfield;
+            });
+          }}
+        /> */}
+        {/* <input
+          type="search"
+          placeholder="search monster"
+          onChange={(e) => this.setState({ searchfield: e.target.value })}
+        /> */}
+
+        <h1 className="app-title">Monster Rolodex</h1>
+        <SearchBox
+          placeholder={"Search monster"}
+          handleChange={this.handleChange}
+        />
+
+        <CardList monsters={this.state.monsters} />
       </div>
     );
   }
