@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./App.css";
-import CardList from "./components/cardList/CardList.comp.jsx";
+import Cards from "./components/cards/Cards";
 import { SearchBox } from "./components/search/Search.comp";
 
 class App extends Component {
@@ -28,16 +28,39 @@ class App extends Component {
       monster.name.toLowerCase().includes(searchfield.toLowerCase());
       console.log(filteredMonsters);
     });
+
     return (
       <div className="App">
-        {/* <CardList>
+        <h1 className="app-title">Monster Rolodex</h1>
+
+        <SearchBox
+          placeholder={"Search monster"}
+          handleChange={this.handleChange}
+        />
+
+        <Cards monsters={this.state.monsters} />
+      </div>
+    );
+  }
+}
+
+export default App;
+
+{
+  /* <CardList>
           {this.state.monsters.map(function (monster) {
             return <h1 key={monster.id}>{monster.name}</h1>;
           })}
-        </CardList>{" "} */}
-        {/* <Card /> */}
-        {/* <CardList monsters={this.state.monsters} /> */}
-        {/* <input
+        </CardList>{" "} */
+}
+{
+  /* <Card /> */
+}
+{
+  /* <CardList monsters={this.state.monsters} /> */
+}
+{
+  /* <input
           type="search"
           placeholder="search monster"
           onChange={(e) => {
@@ -46,23 +69,12 @@ class App extends Component {
               return this.state.searchfield;
             });
           }}
-        /> */}
-        {/* <input
+        /> */
+}
+{
+  /* <input
           type="search"
           placeholder="search monster"
           onChange={(e) => this.setState({ searchfield: e.target.value })}
-        /> */}
-
-        <h1 className="app-title">Monster Rolodex</h1>
-        <SearchBox
-          placeholder={"Search monster"}
-          handleChange={this.handleChange}
-        />
-
-        <CardList monsters={this.state.monsters} />
-      </div>
-    );
-  }
+        /> */
 }
-
-export default App;

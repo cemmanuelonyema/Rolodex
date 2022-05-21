@@ -1,6 +1,6 @@
 import React from "react";
-import { Card } from "../card/Card.comp";
-import "./cardList.style.css";
+import { Cards } from "../card-item/CardItem";
+import "./cards.style.css";
 
 // const CardList = (props) => {
 //   console.log(props);
@@ -31,15 +31,15 @@ import "./cardList.style.css";
 //   );
 // };
 //destructured monsters out of props being passed down
-const CardList = ({ monsters }) => {
+const Cards = ({ monsters }) => {
   return (
-    <div className="card-list">
+    <div className="cards">
       {" "}
       {monsters.map((monster) => (
-        <Card key={monster.id} monster={monster} />
+        <CardItem key={monster.id} monster={monster} />
       ))}
     </div>
   );
 };
 
-export default CardList;
+export default Cards;

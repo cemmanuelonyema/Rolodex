@@ -1,9 +1,9 @@
 import React from "react";
-import "./card.style.css";
+import "./cardItem.style.css";
 
-export const Card = ({ monster }) => {
+export const CardItem = ({ monster }) => {
   return (
-    <div className="card-container">
+    <div className="card-item">
       <img
         alt="monster"
         src={`https://robohash.org/${monster.id}?set=set2&size=180x180`}
